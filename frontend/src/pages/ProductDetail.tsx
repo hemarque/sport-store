@@ -5,37 +5,40 @@ import { Part } from "../model/Part";
 import { useCart } from "../context/CartContext";
 
 const products: Record<string, Product> = {
-    "1": new Product(
+    1: new Product(1,
         "bicycle",
         "Mountain Bike",
+        300,
         [
-            new Part("Frame Type", "Full-suspension", 130),
-            new Part("Frame Finish", "Shiny", 30),
-            new Part("Wheels", "Mountain wheels", 80),
-            new Part("Rim Color", "Black", 20),
-            new Part("Chain", "Single-speed chain", 43)
+            new Part(1, "Frame Type", "Full-suspension", 130),
+            new Part(2, "Frame Finish", "Shiny", 30),
+            new Part(3, "Wheels", "Mountain wheels", 80),
+            new Part(4, "Rim Color", "Black", 20),
+            new Part(5, "Chain", "Single-speed chain", 43)
         ]
     ),
-    "2": new Product(
+    "2": new Product(2,
         "bicycle",
         "Road Bike",
+        200,
         [
-            new Part("Frame Type", "Diamond", 120),
-            new Part("Frame Finish", "Matte", 25),
-            new Part("Wheels", "Road wheels", 70),
-            new Part("Rim Color", "Blue", 20),
-            new Part("Chain", "8-speed chain", 50)
+            new Part(6, "Frame Type", "Diamond", 120),
+            new Part(7, "Frame Finish", "Matte", 25),
+            new Part(8, "Wheels", "Road wheels", 70),
+            new Part(9, "Rim Color", "Blue", 20),
+            new Part(10, "Chain", "8-speed chain", 50)
         ]
     ),
-    "3": new Product(
+    "3": new Product(3,
         "bicycle",
         "Fat Bike",
+        100,
         [
-            new Part("Frame Type", "Full-suspension", 130),
-            new Part("Frame Finish", "Matte", 25),
-            new Part("Wheels", "Fat bike wheels", 100),
-            new Part("Rim Color", "Black", 20),
-            new Part("Chain", "Single-speed chain", 43)
+            new Part(11, "Frame Type", "Full-suspension", 130),
+            new Part(12, "Frame Finish", "Matte", 25),
+            new Part(13, "Wheels", "Fat bike wheels", 100),
+            new Part(14, "Rim Color", "Black", 20),
+            new Part(15, "Chain", "Single-speed chain", 43)
         ]
     )
 };

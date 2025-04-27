@@ -10,9 +10,9 @@ const Cart: React.FC = () => {
   useEffect(() => {
     const savedCart = localStorage.getItem("cart");
     if (savedCart) {
-      const cartItems: Product[] = JSON.parse(savedCart).map((item: any) => {
-        const parts = item.parts.map((part: any) => new Part(part.type, part.option, part.price));
-        return new Product(item.type, item.name, parts);
+      const cartItems: Product[] = JSON.parse(savedCart).map((item: Product) => {
+        const parts = item.parts.map((part: Part) => new Part(part.id, part.type, part.option, part.price));
+        return new Product(item.id, item.type, item.name, item.price, parts);
       });
       setCart(cartItems);
     }

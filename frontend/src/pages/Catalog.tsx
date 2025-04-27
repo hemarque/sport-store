@@ -1,13 +1,18 @@
 import { Link } from "react-router-dom";
-
-const products = [
-  { id: "1", name: "Mountain Bike", price: 303 },
-  { id: "2", name: "Road Bike", price: 285 },
-  { id: "3", name: "Fat Bike", price: 318 }
-];
-
+import { useEffect, useState } from "react";
+import { Product } from "../model/Product";
 
 const Catalog: React.FC = () => {
+
+  const [products, setProducts] = useState<Product[]>([]);
+
+  useEffect(() => {
+    fetch("http://localhost:8080/api/products") // ← API endpoint
+      .then(response => response.json())
+      .then(data => setProducts(data))
+      .catch(error => console.error("Error fetching products:", error));
+  }, []);
+
   return (
     <div>
       <div className="flex items-start space-x-2">
