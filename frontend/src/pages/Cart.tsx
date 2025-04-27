@@ -29,7 +29,7 @@ const Cart: React.FC = () => {
   return (
     <div>
       <div className="flex items-start space-x-2">
-        <img className="align-top" width="30px" src="/img/logo.png" alt="logo" />
+        <img className="align-top" width="40px" src="/img/logo.png" alt="logo" />
         <h1>Marcus Shop</h1>
       </div>
 
