@@ -3,7 +3,7 @@ package com.store.infrastructure.controller;
 import com.store.application.dto.ProductDTO;
 import com.store.application.service.ProductService;
 import com.store.domain.repository.ProductRepository;
-import com.store.infrastructure.repository.InMemoryProductRepository;
+import com.store.infrastructure.database.repository.InMemoryProductRepository;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

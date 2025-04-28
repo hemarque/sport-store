@@ -1,4 +1,4 @@
-package com.store.infrastructure.repository;
+package com.store.infrastructure.database.repository;
 
 import com.store.domain.model.Part;
 import com.store.domain.model.Product;
@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-@Repository
+
 public class InMemoryProductRepository implements ProductRepository {
 
     private final List<Product> products = Arrays.asList(

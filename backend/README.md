@@ -82,6 +82,12 @@ or
 
 `java -jar .\target\backend-1.0.jar`
 
+Database H2 Console:
+
+http://localhost:8080/h2-console
+
+---
+
 
 ##### Call the API like:
 
