@@ -29,7 +29,6 @@ public class ProductController {
     @PostMapping
     public ResponseEntity<ProductDTO> save(@RequestBody ProductDTO product) {
         // not yet implemented
-        System.out.println("Saving : " + product.getName() + " | " + product.getType());
         return ResponseEntity.ok(product);
     }
 

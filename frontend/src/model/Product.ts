@@ -16,7 +16,6 @@ export class Product {
   }
 
   getTotalPrice(): number {
-    // Aunque ya nos llega el price desde el servidor, mantenemos este método por si alguna vez necesitas recalcularlo
     return this.parts.reduce((total, part) => total + part.price, 0);
   }
 }
