@@ -2,6 +2,7 @@ package com.store.infrastructure.controller;
 
 import com.store.application.dto.PartDTO;
 import com.store.application.dto.ProductDTO;
+import com.store.application.service.ProductService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,12 +12,12 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/products")
 public class ProductController {
     private List<ProductDTO> mockProducts;
+
     {
         mockProducts = Arrays.asList(
                 new ProductDTO(
@@ -61,9 +62,11 @@ public class ProductController {
         );
     }
 
+    public ProductController(ProductService service) {
+    }
 
     @GetMapping
-    public List<ProductDTO> getProducts() {
+    public List<ProductDTO> findAll() {
         return this.mockProducts;
     }
 
