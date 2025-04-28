@@ -31,6 +31,4 @@ public class PartService {
     private PartDTO toDTO(Part part) {
         return new PartDTO(part.getId(), part.getType(), part.getOption(), part.getPrice());
     }
-
-
 }
