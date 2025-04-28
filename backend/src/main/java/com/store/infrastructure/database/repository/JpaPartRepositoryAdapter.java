@@ -26,6 +26,12 @@ public class JpaPartRepositoryAdapter implements PartRepository {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public Part save(Part part) {
+        // to be implemented
+        return null;
+    }
+
     private Part toDomain(PartEntity entity) {
         return new Part(entity.getId(), entity.getType(), entity.getOptionName(), entity.getPrice());
     }

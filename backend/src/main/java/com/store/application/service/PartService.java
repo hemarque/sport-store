@@ -23,7 +23,14 @@ public class PartService {
                 .collect(Collectors.toList());
     }
 
+    public PartDTO save(PartDTO partDTO) {
+        Part part = new Part(partDTO.getId(), partDTO.getType(), partDTO.getOption(), partDTO.getPrice());
+        return toDTO(repository.save(part));
+    }
+
     private PartDTO toDTO(Part part) {
         return new PartDTO(part.getId(), part.getType(), part.getOption(), part.getPrice());
     }
+
+
 }

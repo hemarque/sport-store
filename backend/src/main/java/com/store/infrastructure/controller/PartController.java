@@ -25,9 +25,7 @@ public class PartController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public PartDTO createPart(@RequestBody PartDTO newPart) {
-        // not yet implemented
-        //parts.add(newPart);
-        return newPart;
+    public PartDTO save(@RequestBody PartDTO part) {
+        return service.save(part);
     }
 }
