@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.Arrays;
 import java.util.List;
 
-@Repository
 public class InMemoryPartRepository implements PartRepository {
     private final List<Part> parts = Arrays.asList(
             new Part(1L, "Frame Type", "Full-suspension", 130f),
