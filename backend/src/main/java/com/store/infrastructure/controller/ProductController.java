@@ -2,20 +2,23 @@ package com.store.infrastructure.controller;
 
 import com.store.application.dto.PartDTO;
 import com.store.application.dto.ProductDTO;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/products")
 public class ProductController {
-
-    @GetMapping
-    public List<ProductDTO> getProducts() {
-        return Arrays.asList(
+    private List<ProductDTO> mockProducts;
+    {
+        mockProducts = Arrays.asList(
                 new ProductDTO(
                         1L,
                         "bicycle",
@@ -57,4 +60,21 @@ public class ProductController {
                 )
         );
     }
+
+
+    @GetMapping
+    public List<ProductDTO> getProducts() {
+        return this.mockProducts;
+    }
+
+    @GetMapping("/{id}")
+    public ProductDTO findProductById(@PathVariable("id") Long id) {
+        return mockProducts.stream()
+                .filter(p -> p.getId().equals(id))
+                .findFirst()
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND, "Product not found with id: " + id
+                ));
+    }
+
 }

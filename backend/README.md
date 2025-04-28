@@ -90,3 +90,7 @@ or
 Product list:
 
 `curl -X GET http://localhost:8080/api/products`
+
+Product by id:
+
+`curl -X GET http://localhost:8080/api/products/2`
