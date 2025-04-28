@@ -2,10 +2,8 @@ package com.store.infrastructure.controller;
 
 import com.store.application.dto.ProductDTO;
 import com.store.application.service.ProductService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,6 +24,13 @@ public class ProductController {
     @GetMapping("/{id}")
     public ProductDTO findProductById(@PathVariable("id") Long id) {
         return this.service.findProductById(id);
+    }
+
+    @PostMapping
+    public ResponseEntity<ProductDTO> save(@RequestBody ProductDTO product) {
+        // not yet implemented
+        System.out.println("Saving : " + product.getName() + " | " + product.getType());
+        return ResponseEntity.ok(product);
     }
 
 }

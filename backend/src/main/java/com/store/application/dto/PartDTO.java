@@ -1,6 +1,8 @@
 package com.store.application.dto;
 
 public class PartDTO {
+
+    private Long id;
     private String type;
     private String option;
     private Float price;
@@ -8,10 +10,18 @@ public class PartDTO {
     public PartDTO() {
     }
 
-    public PartDTO(String type, String option, Float price) {
+    public PartDTO(Long id, String type, String option, Float price) {
+        this.id = id;
         this.type = type;
         this.option = option;
         this.price = price;
+    }
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getType() {

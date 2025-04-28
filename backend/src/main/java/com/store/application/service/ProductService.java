@@ -34,7 +34,7 @@ public class ProductService {
     private ProductDTO toDTO(Product product) {
         List<PartDTO> parts = product.getParts()
                 .stream()
-                .map(p -> new PartDTO(p.getType(), p.getOption(), p.getPrice()))
+                .map(p -> new PartDTO(p.getId(), p.getType(), p.getOption(), p.getPrice()))
                 .collect(Collectors.toList());
         return new ProductDTO(product.getId(), product.getType(), product.getName(), product.getBasePrice(), parts);
     }
