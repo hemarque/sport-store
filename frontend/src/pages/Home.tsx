@@ -9,6 +9,8 @@ const Home: React.FC = () => {
         <h1>Marcus Shop</h1>
       </div>
       <Link to="/catalog">Browse Products</Link>
+      <br/>
+      <Link to="/backoffice">Backoffice (for authorized personnel only)</Link>
     </div>
   );
 };
