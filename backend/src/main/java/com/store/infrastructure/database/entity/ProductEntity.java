@@ -1,13 +1,12 @@
 package com.store.infrastructure.database.entity;
 
 import jakarta.persistence.*;
+
 import java.util.List;
 
 @Entity
 @Table(name = "products")
 public class ProductEntity {
-
-    public ProductEntity(){}
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,8 +14,16 @@ public class ProductEntity {
     private String type;
     private String name;
     private Float price;
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @ManyToMany
+    @JoinTable(
+            name = "product_parts",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "part_id")
+    )
     private List<PartEntity> parts;
+
+    public ProductEntity() {
+    }
 
     public Long getId() {
         return id;

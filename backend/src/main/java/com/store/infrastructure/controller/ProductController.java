@@ -1,6 +1,5 @@
 package com.store.infrastructure.controller;
 
-import com.store.application.dto.PartDTO;
 import com.store.application.dto.ProductDTO;
 import com.store.application.service.ProductService;
 import org.springframework.web.bind.annotation.*;
@@ -28,10 +27,6 @@ public class ProductController {
 
     @PostMapping
     public ProductDTO save(@RequestBody ProductDTO product) {
-        System.out.println(product.getName());
-        for(PartDTO part : product.getParts()){
-            System.out.println("   " + part.getOption());
-        }
         return service.save(product);
     }
 }

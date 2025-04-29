@@ -35,9 +35,10 @@ public class ProductService {
                 .orElseThrow(() -> new RuntimeException("Product not found with id: " + id));
         return toDTO(product);
     }
+
     public ProductDTO save(ProductDTO productDTO) {
         List<Part> parts = new ArrayList<Part>();
-        for(PartDTO part : productDTO.getParts()){
+        for (PartDTO part : productDTO.getParts()) {
             parts.add(partRepository.findById(part.getId()));
         }
 
@@ -54,8 +55,8 @@ public class ProductService {
 
     private ProductDTO toDTO(Product product) {
         List<PartDTO> parts = new ArrayList<PartDTO>();
-        for(Part part : product.getParts()){
-            parts.add(new PartDTO(null, part.getType(), part.getOption(), part.getPrice()));
+        for (Part part : product.getParts()) {
+            parts.add(new PartDTO(part.getId(), part.getType(), part.getOption(), part.getPrice()));
         }
         return new ProductDTO(product.getId(), product.getType(), product.getName(), product.getBasePrice(), parts);
     }

@@ -2,7 +2,6 @@ package com.store.infrastructure.database.repository;
 
 import com.store.domain.model.Part;
 import com.store.domain.repository.PartRepository;
-import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,8 +25,8 @@ public class InMemoryPartRepository implements PartRepository {
     @Override
     public Part findById(Long id) {
         Part response = null;
-        for(Part part : parts){
-            if(part.getId().equals(id)){
+        for (Part part : parts) {
+            if (part.getId().equals(id)) {
                 response = part;
                 break;
             }

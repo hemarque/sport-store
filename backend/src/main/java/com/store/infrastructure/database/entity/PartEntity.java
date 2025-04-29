@@ -5,7 +5,16 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "parts")
 public class PartEntity {
-    public PartEntity(){}
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String type;
+    @Column(name = "option_name")
+    private String optionName;
+    private Float price;
+
+    public PartEntity() {
+    }
 
     public Long getId() {
         return id;
@@ -38,23 +47,4 @@ public class PartEntity {
     public void setPrice(Float price) {
         this.price = price;
     }
-
-    public ProductEntity getProduct() {
-        return product;
-    }
-
-    public void setProduct(ProductEntity product) {
-        this.product = product;
-    }
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String type;
-    private String optionName;
-    private Float price;
-
-    @ManyToOne
-    @JoinColumn(name = "product_id")
-    private ProductEntity product;
 }
