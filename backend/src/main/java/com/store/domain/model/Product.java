@@ -13,8 +13,9 @@ public class Product {
         this.id = id;
         this.type = type;
         this.name = name;
-        this.basePrice = basePrice;
         this.parts = parts;
+        this.basePrice = basePrice;
+        this.updatePrice();
     }
 
     public Long getId() {
@@ -55,6 +56,15 @@ public class Product {
 
     public void setParts(List<Part> parts) {
         this.parts = parts;
+        this.updatePrice();
+    }
+
+    private void updatePrice() {
+        Float price = 0f;
+        for (Part part : this.parts) {
+            price += part.getPrice();
+        }
+        this.basePrice = price;
     }
 
 }
