@@ -39,11 +39,14 @@ const CreateProduct: React.FC = () => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+
+        const selectedPartsObjects = availableParts.filter(part => selectedParts.includes(part.id));
+
         const newProduct = {
             type,
             name,
             price,
-            partIds: selectedParts
+            parts: selectedPartsObjects
         };
 
         try {
@@ -110,22 +113,14 @@ const CreateProduct: React.FC = () => {
                     ))}
                 </div>
 
-
-
-
-
-
-
-
                 <button type="submit">Create Product</button>
             </form>
-
 
             <div>
                 <h2>Existing Products</h2>
                 <div>
                     {products.map(product => (
-                        <div key={product.id} >
+                        <div key={product.id}>
                             <h3>{product.name}</h3>
                             <p>Type: {product.type}</p>
                             <p>Base Price: ${product.price}</p>
