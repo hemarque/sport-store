@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class InMemoryPartRepository implements PartRepository {
-    private static Long partIdIndex = 1L;
+    private Long partIdIndex = 1L;
     private List<Part> parts = new ArrayList<>(Arrays.asList(
             new Part(partIdIndex++, "Frame Type", "Full-suspension", 130f),
             new Part(partIdIndex++, "Frame Finish", "Shiny", 30f),
@@ -21,6 +21,18 @@ public class InMemoryPartRepository implements PartRepository {
     @Override
     public List<Part> findAll() {
         return parts;
+    }
+
+    @Override
+    public Part findById(Long id) {
+        Part response = null;
+        for(Part part : parts){
+            if(part.getId().equals(id)){
+                response = part;
+                break;
+            }
+        }
+        return response;
     }
 
     @Override

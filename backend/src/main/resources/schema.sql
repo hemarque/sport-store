@@ -1,5 +1,5 @@
 CREATE TABLE products (
-    id BIGINT PRIMARY KEY,
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
     type VARCHAR(255),
     name VARCHAR(255),
     price FLOAT

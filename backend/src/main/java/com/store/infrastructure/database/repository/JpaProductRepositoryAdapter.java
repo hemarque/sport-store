@@ -36,6 +36,36 @@ public class JpaProductRepositoryAdapter implements ProductRepository {
                 .map(this::toDomain);
     }
 
+    @Override
+    public Product save(Product product) {
+        ProductEntity entity = toEntity(product);
+        ProductEntity savedEntity = jpaProductRepository.save(entity);
+        return toDomain(savedEntity);
+    }
+
+    private ProductEntity toEntity(Product product) {
+        ProductEntity entity = new ProductEntity();
+        entity.setId(product.getId());
+        entity.setType(product.getType());
+        entity.setName(product.getName());
+        entity.setPrice(product.getBasePrice());
+
+        List<PartEntity> partEntities = product.getParts().stream()
+                .map(p -> {
+                    PartEntity partEntity = new PartEntity();
+                    partEntity.setId(p.getId());
+                    partEntity.setType(p.getType());
+                    partEntity.setOptionName(p.getOption());
+                    partEntity.setPrice(p.getPrice());
+                    return partEntity;
+                })
+                .collect(Collectors.toList());
+
+        entity.setParts(partEntities);
+        return entity;
+    }
+
+
     private Product toDomain(ProductEntity entity) {
         List<Part> parts = entity.getParts().stream()
                 .map(p -> new Part(p.getId(), p.getType(), p.getOptionName(), p.getPrice()))

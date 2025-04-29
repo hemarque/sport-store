@@ -51,8 +51,8 @@ This code exercise consists of defining a software architecture that could satis
 * 🟡 **_Product page_**: This is a read operation, performed when displaying a product page for the customer to purchase. How would you present this UI? How would you calculate which options are available? How would you calculate the price depending on the customer's selections?
 * 🟡 **_Add to cart action_**: Once the customer makes their selection, there should be an "add to cart" button. What happens when the customer clicks this button? What is persisted in the database?
 * ❌ **_Administrative workflows_**: Describe the main workflows for Marcus to manage his store.
-* ❌ **_New product creation_**: What information is required to create a new product? How does the database change?
-* ❌ **_Adding a new part choice_**: How can Marcus introduce a new rim color? Describe the UI and how the database changes.
+* 🟡 **_New product creation_**: What information is required to create a new product? How does the database change?
+* ✅ **_Adding a new part choice_**: How can Marcus introduce a new rim color? Describe the UI and how the database changes.
 * ❌ **_Setting prices_**: How can Marcus change the price of a specific part or specify particular pricing for combinations of choices? How does the UI and database handle this?
 
 ✅ We expect you to provide the core model of the solution: a set of classes/functions/modules in the language of your choice that describe the main relationships between entities, along with any supporting materials (database schemas, diagrams, etc.). 

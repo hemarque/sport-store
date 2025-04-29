@@ -4,10 +4,12 @@ import com.store.domain.model.Part;
 import com.store.domain.repository.PartRepository;
 import com.store.infrastructure.database.entity.PartEntity;
 import com.store.infrastructure.database.repository.jpa.JpaPartRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Repository
@@ -24,6 +26,13 @@ public class JpaPartRepositoryAdapter implements PartRepository {
         return jpaPartRepository.findAll().stream()
                 .map(this::toDomain)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Part findById(Long id) {
+        return jpaPartRepository.findById(id)
+                .map(this::toDomain)
+                .orElseThrow(() -> new EntityNotFoundException("Part not found with id " + id));
     }
 
     @Override

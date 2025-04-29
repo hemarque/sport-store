@@ -9,6 +9,15 @@ public class ProductEntity {
 
     public ProductEntity(){}
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String type;
+    private String name;
+    private Float price;
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private List<PartEntity> parts;
+
     public Long getId() {
         return id;
     }
@@ -48,13 +57,4 @@ public class ProductEntity {
     public void setParts(List<PartEntity> parts) {
         this.parts = parts;
     }
-
-    @Id
-    private Long id;
-    private String type;
-    private String name;
-    private Float price;
-
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    private List<PartEntity> parts;
 }

@@ -1,7 +1,7 @@
-INSERT INTO products (id, type, name, price) VALUES
-(1, 'bicycle', 'Mountain Bike', 303),
-(2, 'bicycle', 'Road Bike', 285),
-(3, 'bicycle', 'Fat Bike', 318);
+INSERT INTO products (type, name, price) VALUES
+('bicycle', 'Mountain Bike', 303),
+('bicycle', 'Road Bike', 285),
+('bicycle', 'Fat Bike', 318);
 
 INSERT INTO parts (type, option_name, price, product_id) VALUES
 ('Frame Type', 'Full-suspension', 130, 1),

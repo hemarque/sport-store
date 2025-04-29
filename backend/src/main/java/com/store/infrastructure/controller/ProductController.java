@@ -1,8 +1,8 @@
 package com.store.infrastructure.controller;
 
+import com.store.application.dto.PartDTO;
 import com.store.application.dto.ProductDTO;
 import com.store.application.service.ProductService;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,9 +27,11 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity<ProductDTO> save(@RequestBody ProductDTO product) {
-        // not yet implemented
-        return ResponseEntity.ok(product);
+    public ProductDTO save(@RequestBody ProductDTO product) {
+        System.out.println(product.getName());
+        for(PartDTO part : product.getParts()){
+            System.out.println("   " + part.getOption());
+        }
+        return service.save(product);
     }
-
 }
