@@ -3,14 +3,13 @@ import { Link } from "react-router-dom";
 
 const Admin: React.FC = () => {
   return (
-    <div className="p-4">
-      <div className="flex items-center space-x-4">
-        <img className="align-top" width="40" src="/img/logo.png" alt="logo" />
-        <h1 className="text-2xl font-bold">Admin</h1>
+    <div>
+      <div className="flex items-start space-x-2">
+        <img className="align-top" width="40px" src="/img/logo.png" alt="logo" />
+        <h1>Marcus Shop</h1>       
       </div>
-      <Link to="/part">Create part</Link>
-      <br/>
-      <Link to="/product">Create product</Link>
+      <h2>Admin</h2>
+      <Link to="/part">Create part</Link> | <Link to="/product">Create product</Link>
     </div>
   );
 };

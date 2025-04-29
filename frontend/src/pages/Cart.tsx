@@ -33,7 +33,7 @@ const Cart: React.FC = () => {
         <h1>Marcus Shop</h1>
       </div>
 
-      <h1>Shopping Cart</h1>
+      <h2>Shopping Cart</h2>
       {cart.length > 0 ? (
         <>
           <ul>

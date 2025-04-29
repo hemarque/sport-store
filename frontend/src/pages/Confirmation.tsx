@@ -14,8 +14,8 @@ const Confirmation: React.FC = () => {
         <img className="align-top" width="40px" src="/img/logo.png" alt="logo" />
         <h1>Marcus Shop</h1>
       </div>
-
-      <h1>Thank you for your order!</h1>
+      <br/>
+      <h3>Thank you for your order!</h3>
       <p>Your order has been confirmed. We will process it soon.</p>
       <button onClick={handleGoHome}>Go to Home</button> { }
     </div>

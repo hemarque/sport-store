@@ -8,9 +8,7 @@ const Home: React.FC = () => {
         <img className="align-top" width="40px" src="/img/logo.png" alt="logo" />
         <h1>Marcus Shop</h1>
       </div>
-      <Link to="/catalog">Browse Products</Link>
-      <br/>
-      <Link to="/backoffice">Backoffice (for authorized personnel only)</Link>
+      <Link to="/catalog">Browse Products</Link> | <Link to="/backoffice">Backoffice (for authorized personnel only)</Link>
     </div>
   );
 };

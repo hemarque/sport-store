@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Part } from "../model/Part";
 import { Product } from "../model/Product";
+import { Link } from "react-router-dom";
+
 
 const CreateProduct: React.FC = () => {
     const [type, setType] = useState("");
@@ -74,7 +76,13 @@ const CreateProduct: React.FC = () => {
 
     return (
         <div>
+            <div className="flex items-start space-x-2">
+                <img className="align-top" width="40px" src="/img/logo.png" alt="logo" />
+                <h1>Marcus Shop</h1>
+            </div>
             <h2>Create New Product</h2>
+            <Link to="/">Home</Link> | <Link to="/backoffice">Backoffice</Link> | <Link to="/part">Create part</Link>
+            <br /><br /><hr /><br />
             <form onSubmit={handleSubmit}>
                 <input
                     type="text"
@@ -108,7 +116,7 @@ const CreateProduct: React.FC = () => {
                                 onChange={() => togglePartSelection(part.id)}
                                 className="w-4 h-4"
                             />
-                            <span>{part.type} - {part.option} (${part.price})<br/></span>
+                            <span>{part.type} - {part.option} (${part.price})<br /></span>
                         </label>
                     ))}
                 </div>

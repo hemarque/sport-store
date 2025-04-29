@@ -23,7 +23,7 @@ const Checkout: React.FC = () => {
                 <img className="align-top" width="40px" src="/img/logo.png" alt="logo" />
                 <h1>Marcus Shop</h1>
             </div>
-            <h1>Checkout</h1>
+            <h2>Checkout</h2>
             <form>
                 <input
                     type="text"

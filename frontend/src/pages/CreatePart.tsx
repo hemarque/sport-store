@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Part } from "../model/Part";
+import { Link } from "react-router-dom";
 
 const CreatePart: React.FC = () => {
     const [type, setType] = useState("");
@@ -42,7 +43,7 @@ const CreatePart: React.FC = () => {
                 setType("");
                 setOption("");
                 setPrice(0);
-                await fetchParts(); 
+                await fetchParts();
             } else {
                 alert("Failed to create part.");
             }
@@ -52,8 +53,14 @@ const CreatePart: React.FC = () => {
     };
 
     return (
-        <div className="p-4">
-            <h2 className="text-xl mb-4">Create New Part</h2>
+        <div>
+            <div className="flex items-start space-x-2">
+                <img className="align-top" width="40px" src="/img/logo.png" alt="logo" />
+                <h1>Marcus Shop</h1>
+            </div>
+            <h2>Create New Part</h2>
+            <Link to="/">Home</Link> | <Link to="/backoffice">Backoffice</Link> | <Link to="/product">Create product</Link>
+            <br/><br/><hr/><br/>
             <form onSubmit={handleSubmit} className="flex flex-col gap-4 max-w-md">
                 <input
                     type="text"

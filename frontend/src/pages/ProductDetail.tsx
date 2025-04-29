@@ -34,7 +34,7 @@ const ProductDetail: React.FC = () => {
         }
     }, [id]);
 
-    if (!product) return <div>Loading...</div>;
+    if (!product) return <div>Product not found.</div>;
 
     const handleCart = () => {
         navigate("/cart");
@@ -47,14 +47,14 @@ const ProductDetail: React.FC = () => {
     return (
         <div>
             <div className="flex items-start space-x-2">
-                <img className="align-top" width="30px" src="/img/logo.png" alt="logo" />
+                <img className="align-top" width="40px" src="/img/logo.png" alt="logo" />
                 <h1>Marcus Shop</h1>
             </div>
-            <h1>{product.name}</h1>
+            <h2>{product.name}</h2>
             <p>Type: {product.type}</p>
             <p>Total Price: ${product.getTotalPrice()}</p>
 
-            <h2>Parts:</h2>
+            <h3>Parts:</h3>
             <ul>
                 {product.parts.map((part, index) => (
                     <li key={index}>
@@ -62,11 +62,13 @@ const ProductDetail: React.FC = () => {
                     </li>
                 ))}
             </ul>
+            <br /><hr /><br />
 
             <button onClick={() => addToCart(product)}>Add to Cart</button>
 
             <div>
-                <h3>Shopping Cart</h3>
+                <br />
+                <h2>Shopping Cart</h2>
                 {cart.length > 0 ? (
                     <ul>
                         {cart.map((cartItem, index) => (
