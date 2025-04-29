@@ -1,131 +1,130 @@
 # sport-store : backend
 
----
-**Legend:**
+## Overview
 
-- ✅ done
-- 🟡 in progress
-- ❌ to do
+Marcus Shop is an e-commerce for customizable bicycles and other products. Customers can view available bicycles and
+personalize them by selecting different parts, such as the frame, wheels, and chain.
 
----
-✅ You're tasked with building a website that allows Marcus, a bicycle shop owner, to sell his bicycles. Marcus owns a
-growing business and now wants to sell online.
+The backend of the application follows a **Hexagonal Architecture**, also known as **Ports and Adapters**, where the
+core logic (domain layer) is decoupled from external systems (e.g., database, UI, or APIs).
 
-## Domain
-
-✅ **_PRODUCT_**: He also tells you that bicycles are his main **`product`**, but if the business continues to grow, he
-will surely start selling other sports-related items such as skis, surfboards, roller skates, etc. It would be a nice
-bonus if the same website allowed him to sell those things as well.
-
-✅ **_PARTS_**: What makes Marcus's business successful is that customers can fully customize their bicycles. They can
-select many different options for the various **`parts`** of the bicycle.
-
-✅ **_PART CHOICES_**: Here is an incomplete list of all the parts and their **`possible choices`**, to give an example:
-
-* Frame type: Full-suspension, diamond, step-through
-* Frame finish: Matte, shiny
-* Wheels: Road wheels, mountain wheels, fat bike wheels
-* Rim color: Red, black, blue
-* Chain: Single-speed chain, 8-speed chain
-
-## Business rules
-
-**_PRODUCT SERVICE: COMBINATION_**
-
-❌ On top of that, Marcus points out that some combinations are prohibited because they are not possible in reality. For
-example:
-
-* If you select "mountain wheels," then the only frame available is the full-suspension.
-* If you select "fat bike wheels," then the red rim color is unavailable because the **`manufacturer`** doesn't provide
-  it.
-
-**_INVENTORY SERVICE: STOCK VALIDATION_**
-
-❌ Additionally, Marcus sometimes doesn't have all possible variations of each part in **`stock`**, so he wants to be
-able to mark them as "temporarily out of stock" to avoid receiving orders he can't fulfill.
-
-**_PRICE CALCULATION SERVICE_**
-
-✅ Finally, Marcus explains how to calculate the price that you should present to the customer after customizing a
-bicycle. Normally, this price is calculated by adding up the individual prices of each selected part. For example:
-
-* Full suspension = 130 EUR
-* Shiny frame = 30 EUR
-* Road wheels = 80 EUR
-* Rim color blue = 20 EUR
-* Chain: Single-speed chain = 43 EUR
-* **_Total price: 130 + 30 + 80 + 20 + 43 = 303 EUR_**
-
-❌ However, the price of some options might depend on others. For instance, the frame finish is applied over the whole
-bicycle, so the more area to cover, the more expensive it gets. Because of that, the matte finish over a full-suspension
-frame costs 50 EUR, while applied over a diamond frame it costs 35 EUR. These kinds of variations can always happen, and
-they might depend on any of the other choices, so Marcus asks you to consider this, as otherwise, he would be losing
-money.
-
-### Code Exercise Overview:
-
-This code exercise consists of defining a software architecture that could satisfy the requirements described above. In
-particular:
-
-* ✅ **_Data model_**: What data model would best support this application? Can you describe it? Include table
-  specifications (or documents if it's a non-relational database) with fields, their associations, and the meaning of
-  each entity.
-* ✅ **_Main user actions_**: Explain the main actions users would take on this e-commerce website in detail.
-* 🟡 **_Product page_**: This is a read operation, performed when displaying a product page for the customer to purchase.
-  How would you present this UI? How would you calculate which options are available? How would you calculate the price
-  depending on the customer's selections?
-* 🟡 **_Add to cart action_**: Once the customer makes their selection, there should be an "add to cart" button. What
-  happens when the customer clicks this button? What is persisted in the database?
-* 🟡 **_Administrative workflows_**: Describe the main workflows for Marcus to manage his store.
-* ✅ **_New product creation_**: What information is required to create a new product? How does the database change?
-* ✅ **_Adding a new part choice_**: How can Marcus introduce a new rim color? Describe the UI and how the database
-  changes.
-* ❌ **_Setting prices_**: How can Marcus change the price of a specific part or specify particular pricing for
-  combinations of choices? How does the UI and database handle this?
-
-✅ We expect you to provide the core model of the solution: a set of classes/functions/modules in the language of your
-choice that describe the main relationships between entities, along with any supporting materials (database schemas,
-diagrams, etc.).
-
-✅ Please keep it lightweight—no need to use web frameworks or provide a finished solution.
-
-✅ For any other system specifications not directly stated in the exercise, feel free to interpret them as you see fit.
-
----
-
-### Hexagonal Architecture
-
-I've decided to use Hexagonal Architecture to keep the project clean and modular. This approach helps ensure each
-component has a single responsibility and can evolve independently.
+## Architecture: Hexagonal Architecture
 
 ![Hexagonal Architecture](assets/hexarch.png)
 
+Hexagonal Architecture helps to decouple the core application logic from the external systems. The main idea is to have
+a **central core** (domain) that interacts with the outside world (e.g., database, web services) through **ports** and *
+*adapters**.
+
+In this system, the application is structured in layers to separate concerns, and each component has a well-defined
+responsibility. Below is an explanation of the architecture and the key pieces involved in the codebase.
+
+### Layers in the Architecture
+
+1. **Domain Layer (Core)**:
+
+- This is the heart of the application. It includes the business logic and entities. It does not depend on any external
+  systems like databases or web frameworks. The domain layer includes:
+    - **Entities**: The core objects of the system (e.g., `Product`, `Part`).
+    - **Repositories**: Interfaces for data access (e.g., `ProductRepository`), allowing the domain to persist and
+      retrieve data without being tied to a specific database technology.
+    - **Services**: Business logic that operates on the domain entities and coordinates interactions between them.
+
+2. **Application Layer**:
+
+- This layer acts as a bridge between the domain and external systems. It uses **commands** and **services** to handle
+  user requests and communicate with the domain. Key components include:
+    - **Commands**: Objects that represent an action or intent. For example, a command might represent adding a product
+      to the database.
+    - **Services**: Orchestrate the application's use cases and business logic. They invoke the domain's functionality
+      and make decisions based on external inputs.
+
+3. **Infrastructure Layer**:
+
+- This layer contains the technical details of how the application interacts with external systems, such as databases,
+  web frameworks, or APIs. It includes:
+    - **Repositories (Adapters)**: Concrete implementations of the repository interfaces that interact with the actual
+      data store (e.g., using JPA to persist entities).
+    - **API Adapters**: REST controllers or other mechanisms to expose the application to the outside world (e.g., HTTP
+      API).
+    - **Database**: The actual database (e.g., H2 for development) and its configuration.
+
 ---
 
-##### Run server with:
+## Key Components and Their Responsibilities
 
-`mvn spring-boot:run`
+### 1. **Repository**
 
-or
+- **Responsibility**: Define the contract for data storage and retrieval. The repository is part of the domain layer but
+  has an implementation in the infrastructure layer. It abstracts the persistence logic from the core application.
+- **Example**: `ProductRepository`, which defines methods to save, find, and delete products. Implemented using JPA in
+  the infrastructure layer (e.g., `JpaProductRepositoryAdapter`).
 
-`mvn clean package`
+### 2. **Service**
 
-`java -jar .\target\backend-1.0.jar`
+- **Responsibility**: Contain business logic that operates on domain entities. A service can orchestrate multiple
+  commands or actions to fulfill a use case.
+- **Example**: `ProductService`, which might handle the logic to create a new product, check product availability, or
+  apply discounts.
 
-Database H2 Console:
+### 3. **Adapter**
 
-http://localhost:8080/h2-console
+- **Responsibility**: Implement the ports defined in the domain layer to communicate with external systems. Adapters are
+  responsible for translating data between the internal format and the format expected by external systems (e.g.,
+  database or APIs).
+- **Example**: `JpaProductRepositoryAdapter`, which is responsible for translating between the `Product` entity in the
+  domain and the `ProductEntity` in the database.
+
+### 4. **Controller**
+
+- **Responsibility**: Expose application functionality to the outside world (typically as a REST API). Controllers map
+  HTTP requests to application services and return responses.
+- **Example**: `ProductController`, which exposes API endpoints like `/api/products` to fetch product data.
 
 ---
 
-##### Call the API like:
+## Features
 
-**Products:**
+- **Product and Part Management**: Administrators can add, manage, and customize products and parts in the system.
+- **Customizable Bicycles**: Users can view available bicycles and customize them by selecting different parts (still in
+  development).
+- **Database Persistence**: The application uses H2 as an in-memory database for development and JPA for persistence.
+- **CORS Configuration**: Allows frontend applications (running on `http://localhost:3000`) to interact with the backend
+  API.
 
-Product list:
+## Installation
 
-`curl -X GET http://localhost:8080/api/products`
+To run the project locally, follow these steps:
 
-Product by id:
+1. Clone the repository
 
-`curl -X GET http://localhost:8080/api/products/2`
+   `git clone https://github.com/hemarque/sport-store.git`
+
+2. Build and run the project with Spring Boot.
+   
+   `cd backend`
+   
+   `mvn spring-boot:run`
+
+    or
+
+    `mvn clean package`
+
+    `java -jar .\target\backend-1.0.jar`
+    
+3. Access the H2 database console at `http://localhost:8080/h2-console` (username: `sa`, no password).
+
+4. Visit http://localhost:8080/api/products to access the product API.
+    ##### Call the API like:
+
+    **Products:**
+
+    Product list:
+
+    `curl -X GET http://localhost:8080/api/products`
+
+    Product by id:
+
+    `curl -X GET http://localhost:8080/api/products/2`
+
+5. Visit http://localhost:8080/api/parts to access the parts API.

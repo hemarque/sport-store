@@ -98,14 +98,7 @@ const CreateProduct: React.FC = () => {
                     onChange={(e) => setName(e.target.value)}
                     required
                 />
-                <input
-                    type="number"
-                    placeholder="Base Price"
-                    value={price}
-                    onChange={(e) => setPrice(Number(e.target.value))}
-                    required
-                    min="0"
-                />
+
                 <h3>Select Parts:</h3>
                 <div>
                     {availableParts.map((part) => (

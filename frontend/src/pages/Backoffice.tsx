@@ -8,7 +8,7 @@ const Admin: React.FC = () => {
         <img className="align-top" width="40px" src="/img/logo.png" alt="logo" />
         <h1>Marcus Shop</h1>       
       </div>
-      <h2>Admin</h2>
+      <h2>Backoffice</h2>
       <Link to="/part">Create part</Link> | <Link to="/product">Create product</Link>
     </div>
   );
